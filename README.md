@@ -1,75 +1,316 @@
-# 🌍 GDP Prediction of World Countries
+# 🌍 GDP Prediction of World Countries Using Machine Learning
 
 ## 📌 Project Overview
 
-This project focuses on predicting the **GDP per capita of countries** using supervised Machine Learning techniques.
+This project focuses on predicting the **GDP per capita of countries** using **Supervised Machine Learning** techniques.
 
-The project uses demographic, geographic, social, and economic characteristics of countries as input features to predict **GDP per capita**.
+The project uses country-level demographic, geographical, and socioeconomic information to train Machine Learning regression models and predict GDP per capita.
 
-This project was developed as part of the **AI Automation** course at **University West, Sweden**.
-
----
-
-## 🎯 Project Objective
-
-The main objectives of this project are:
-
-- To understand and analyze country-level data.
-- To clean and preprocess the dataset.
-- To perform exploratory data analysis.
-- To identify relationships between different country characteristics and GDP.
-- To apply supervised Machine Learning regression algorithms.
-- To compare different Machine Learning models.
-- To evaluate model performance using RMSE, MAE, and R².
-- To develop a reusable preprocessing pipeline and trained model.
-- To predict GDP per capita for unseen data.
+Different Machine Learning models are trained, evaluated, compared, and validated to identify the most suitable model for the prediction task.
 
 ---
 
-## 📊 Dataset
+## 🎯 Problem Statement
 
-The dataset contains information about different countries and their demographic, geographic, social, and economic characteristics.
+The main objective of this project is to develop a Machine Learning system that can predict the **GDP per capita of countries** based on different demographic, geographical, and socioeconomic features.
 
-### Target Variable
+The project investigates whether information such as population, literacy, migration, birth rate, death rate, agriculture, industry, and service-sector contribution can be used to predict the GDP per capita of a country.
 
-The target variable is:
+---
 
-**GDP ($ per capita)**
+## 🧠 Machine Learning Type
 
-GDP per capita is separated from the input features and used as the target variable for supervised learning.
+**Learning Type:** Supervised Learning
+
+**Problem Type:** Regression
+
+**Target Variable:** GDP ($ per capita)
+
+Since the target variable is a continuous numerical value, this is a **regression problem**.
+
+---
+
+# 📊 Dataset
+
+The dataset contains information about different countries and their demographic, geographical, and socioeconomic characteristics.
 
 ### Input Features
 
-The project uses the following features:
+The following features are used as input variables:
 
-- Population
-- Area (sq. mi.)
-- Pop. Density (per sq. mi.)
-- Coastline (coast/area ratio)
-- Net migration
-- Infant mortality (per 1000 births)
-- Literacy (%)
-- Phones (per 1000)
-- Arable (%)
-- Crops (%)
-- Other (%)
-- Climate
-- Birthrate
-- Deathrate
-- Agriculture
-- Industry
-- Service
+1. Population
+2. Area (sq. mi.)
+3. Pop. Density (per sq. mi.)
+4. Coastline (coast/area ratio)
+5. Net migration
+6. Infant mortality (per 1000 births)
+7. Literacy (%)
+8. Phones (per 1000)
+9. Arable (%)
+10. Crops (%)
+11. Other (%)
+12. Climate
+13. Birthrate
+14. Deathrate
+15. Agriculture
+16. Industry
+17. Service
+
+### Target Variable
+
+**GDP ($ per capita)**
+
+The GDP per capita column is used as the target variable and is separated from the input features before Machine Learning model training.
 
 ---
 
-## 🔄 Machine Learning Workflow
+# 🧹 Data Preprocessing
 
-The project follows the following workflow:
+Several preprocessing steps were performed before training the Machine Learning models.
+
+### Preprocessing Steps
+
+1. Load the dataset.
+2. Inspect the dataset structure.
+3. Convert numerical values into appropriate numerical formats.
+4. Check for duplicate records.
+5. Check for missing values.
+6. Handle missing values.
+7. Separate the target variable from the input features.
+8. Split the data into training and testing datasets.
+9. Apply numerical preprocessing.
+10. Apply categorical preprocessing where required.
+11. Apply feature scaling.
+12. Create a reusable preprocessing pipeline.
+
+### Preprocessing Techniques
+
+The project uses:
+
+- Median imputation for missing numerical values
+- One-hot encoding for categorical variables
+- Standard scaling for numerical features
+- Reusable Scikit-learn preprocessing pipelines
+
+---
+
+# 🔧 Feature Engineering
+
+Additional features were created to provide the Machine Learning models with more meaningful information.
+
+The engineered features include:
+
+### Natural Growth
+
+Natural growth is derived from the relationship between birth rate and death rate.
+
+### Industry + Service
+
+The Industry and Service contributions are combined to represent the overall contribution of these sectors.
+
+### Service-Agriculture Gap
+
+The difference between the Service and Agriculture contributions is used as an additional socioeconomic feature.
+
+Feature engineering helps the models identify relationships that may not be directly visible from the original variables.
+
+---
+
+# 🔬 Exploratory Data Analysis
+
+Exploratory Data Analysis was performed to understand the dataset and relationships between variables.
+
+The analysis included:
+
+- Dataset inspection
+- Descriptive statistics
+- Missing-value analysis
+- Duplicate checking
+- Histograms
+- Scatter plots
+- Correlation analysis
+- Feature relationships
+
+Visualization was performed using **Matplotlib**.
+
+---
+
+# 🤖 Machine Learning Models
+
+Three supervised regression models were implemented and compared.
+
+## 1. Linear Regression
+
+Linear Regression is a supervised Machine Learning algorithm used to model the relationship between the input features and the target variable.
+
+It assumes a linear relationship between the independent variables and GDP per capita.
+
+---
+
+## 2. Decision Tree Regression
+
+Decision Tree Regression uses a tree-like structure to make predictions.
+
+The model repeatedly divides the data using decision rules based on the input features.
+
+Decision Trees can capture nonlinear relationships between features and the target variable.
+
+---
+
+## 3. Random Forest Regression
+
+Random Forest Regression is an ensemble Machine Learning algorithm.
+
+It combines multiple Decision Trees and uses their predictions to produce a final prediction.
+
+Random Forest can capture complex nonlinear relationships and is generally more robust than a single Decision Tree.
+
+---
+
+# 📏 Model Evaluation
+
+The Machine Learning models were evaluated using three important regression metrics:
+
+## RMSE — Root Mean Squared Error
+
+RMSE measures the magnitude of prediction errors.
+
+A **lower RMSE indicates better performance**.
+
+---
+
+## MAE — Mean Absolute Error
+
+MAE measures the average absolute difference between the actual and predicted values.
+
+A **lower MAE indicates better performance**.
+
+---
+
+## R² — R-squared
+
+R² measures how much of the variation in the target variable is explained by the Machine Learning model.
+
+An R² value closer to **1.0** indicates better performance.
+
+---
+
+# 📊 Model Comparison
+
+The three Machine Learning models were compared using RMSE, MAE, and R².
+
+| Model | RMSE | MAE | R² |
+|---|---:|---:|---:|
+| Linear Regression | 4269.97 | 2884.59 | 0.83159 |
+| Decision Tree | 0.00 | 0.00 | 1.00000 |
+| Random Forest | 1710.73 | 991.55 | 0.97297 |
+
+The model comparison shows the performance of the different regression algorithms on the evaluation data.
+
+The perfect Decision Tree score should be interpreted carefully because a perfect score on one evaluation split can indicate **overfitting**.
+
+Therefore, cross-validation was also performed to obtain a more reliable comparison.
+
+---
+
+# 🔄 Cross-Validation
+
+Cross-validation was used to obtain a more reliable estimate of model performance.
+
+The cross-validation results were:
+
+| Model | Mean RMSE | Standard Deviation |
+|---|---:|---:|
+| Random Forest | 4441.73 | 1252.61 |
+| Linear Regression | 5777.27 | 1257.34 |
+| Decision Tree | 7297.17 | 1351.66 |
+
+### Cross-Validation Result
+
+**Random Forest achieved the lowest Mean RMSE and was therefore selected as the best-performing model based on cross-validation.**
+
+---
+
+# 🧪 Final Evaluation on Unseen Test Data
+
+After training and selecting the Machine Learning model, the saved model and preprocessing pipeline were used to make predictions on unseen test data.
+
+The final model was evaluated using RMSE, MAE, and R².
+
+## Final Test Results
+
+| Metric | Final Score |
+|---|---:|
+| RMSE | **2981.35** |
+| MAE | **2281.24** |
+| R² | **0.87356** |
+
+### Final R² Score
+
+**0.87356**
+
+The R² score of approximately **0.87** means that the final model explains approximately **87.36% of the variation in GDP per capita** in the unseen test data.
+
+---
+
+# 📈 Final Prediction Results
+
+The final model was used to predict GDP per capita values for countries that were not used during the model's training process.
+
+The predictions were compared with the actual GDP per capita values to evaluate the model's performance.
+
+The final evaluation demonstrates that the trained Machine Learning system can make meaningful predictions on unseen data.
+
+---
+
+# 💾 Saving the Machine Learning Model
+
+The trained Machine Learning components were saved using Pickle/Joblib so that they can be reused without training the model again.
+
+## Saved Files
+
+### `GDP_prediction_model.pkl`
+
+This file contains the trained Machine Learning model.
+
+It can be loaded later to make predictions on new data.
+
+### `GDP_preprocessing_pipeline.pkl`
+
+This file contains the preprocessing pipeline.
+
+It ensures that new input data is transformed in the same way as the data used during model training.
+
+---
+
+# 🔮 Prediction Workflow
+
+The saved Machine Learning system follows this workflow:
+
+```text
+New Country Data
+       ↓
+Preprocessing Pipeline
+       ↓
+Data Transformation
+       ↓
+Trained Machine Learning Model
+       ↓
+GDP per Capita Prediction
+```
+
+This makes the trained model reusable for future predictions.
+
+---
+
+# 🔁 Complete Project Workflow
 
 ```text
 Country Dataset
        ↓
 Data Loading
+       ↓
+Data Inspection
        ↓
 Data Cleaning
        ↓
@@ -81,407 +322,191 @@ Exploratory Data Analysis
        ↓
 Feature Engineering
        ↓
-Separate Features (X) and Target (y)
+Separate Features and Target
        ↓
 Train/Test Split
        ↓
-Data Preprocessing Pipeline
+Preprocessing Pipeline
        ↓
-Model Training
+Feature Transformation
+       ↓
+Machine Learning Models
+       ↓
+ ┌───────────────────────┐
+ │ Linear Regression     │
+ │ Decision Tree         │
+ │ Random Forest         │
+ └───────────────────────┘
        ↓
 Model Comparison
        ↓
 Cross-Validation
        ↓
-Final Model Evaluation
+Best Model Selection
        ↓
-GDP Prediction
+Final Evaluation
+       ↓
+Unseen Test Data
+       ↓
+Save Model and Pipeline
+       ↓
+Future Predictions
 ```
 
 ---
 
-## 🧹 Data Preprocessing
+# 🛠️ Technologies and Libraries Used
 
-The following preprocessing steps were performed:
+## Programming Language
 
-1. Loaded the country GDP dataset.
-2. Inspected the dataset structure.
-3. Converted numerical data into appropriate formats.
-4. Checked for duplicate records.
-5. Identified and handled missing values.
-6. Separated the target variable from the input features.
-7. Performed feature engineering.
-8. Split the data into training and testing datasets.
-9. Applied preprocessing using a Machine Learning pipeline.
-10. Saved the preprocessing pipeline for future predictions.
+- Python
 
----
+## Development Environment
 
-## 🔎 Exploratory Data Analysis
+- Jupyter Notebook
 
-Exploratory Data Analysis (EDA) was performed to understand the dataset and relationships between variables.
+## Python Libraries
 
-The analysis included:
+- NumPy
+- Pandas
+- Matplotlib
+- Scikit-learn
+- Joblib
 
-- Histograms
-- Scatter plots
-- Correlation analysis
-- Feature distributions
-- Relationship analysis between features and GDP
-- Statistical summaries
+## Version Control and Repository
 
-These analyses helped to understand the structure of the data before applying Machine Learning models.
+- GitHub
 
 ---
 
-## ⚙️ Feature Engineering
+# 📚 Key Learning Outcomes
 
-Additional features were investigated/created to improve the representation of the country-level data.
+Through this project, we learned how to:
 
-Examples include:
-
-- Natural Growth
-- Industry + Service
-- Service-Agriculture Gap
-
-Feature engineering helps the Machine Learning models identify useful relationships between the input variables and GDP per capita.
-
----
-
-## 🤖 Machine Learning Models
-
-Three supervised regression algorithms were used for model comparison.
-
-### 1. Linear Regression
-
-Linear Regression models the relationship between the input features and GDP per capita using a linear relationship.
-
-It provides a simple baseline model for comparison.
-
----
-
-### 2. Decision Tree Regression
-
-Decision Tree Regression uses a tree-like structure to learn relationships between the input features and GDP per capita.
-
-It can model nonlinear relationships but can suffer from overfitting if the tree becomes too complex.
+- Load and inspect datasets
+- Clean real-world data
+- Handle missing values
+- Detect duplicate records
+- Perform Exploratory Data Analysis
+- Create data visualizations
+- Engineer new features
+- Separate input features and target variables
+- Split data into training and testing sets
+- Build Machine Learning preprocessing pipelines
+- Perform numerical and categorical preprocessing
+- Train supervised Machine Learning models
+- Perform regression
+- Compare multiple Machine Learning algorithms
+- Perform cross-validation
+- Evaluate models using RMSE
+- Evaluate models using MAE
+- Evaluate models using R²
+- Identify the best-performing model
+- Save trained Machine Learning models
+- Save preprocessing pipelines
+- Load saved Machine Learning models
+- Generate predictions on unseen data
+- Organize a Machine Learning project using GitHub
 
 ---
 
-### 3. Random Forest Regression
+# 🏆 Project Conclusion
 
-Random Forest Regression combines multiple decision trees to produce a more robust prediction.
+This project demonstrates the application of **Supervised Machine Learning regression techniques** for predicting the GDP per capita of countries.
 
-It can capture nonlinear relationships and is generally more resistant to overfitting than a single decision tree.
+Three different regression algorithms were implemented:
 
----
+1. Linear Regression
+2. Decision Tree Regression
+3. Random Forest Regression
 
-# 📏 Model Evaluation Metrics
+The models were compared using RMSE, MAE, and R².
 
-The models were evaluated using three regression metrics.
+Cross-validation showed that **Random Forest achieved the lowest Mean RMSE** among the tested models and was therefore selected as the best model based on cross-validation.
 
-## RMSE — Root Mean Squared Error
+The final evaluation on unseen test data produced:
 
-RMSE measures the magnitude of prediction errors.
+- **RMSE:** 2981.35
+- **MAE:** 2281.24
+- **R²:** 0.87356
 
-A lower RMSE indicates better performance.
+The final R² score of **0.87356** indicates that the final model explains approximately **87.36% of the variation in GDP per capita** on the unseen test data.
 
-Large errors are penalized more heavily because the errors are squared before calculating the average.
-
----
-
-## MAE — Mean Absolute Error
-
-MAE measures the average absolute difference between the actual and predicted GDP values.
-
-A lower MAE indicates better performance.
+The project also demonstrates how a trained Machine Learning model and preprocessing pipeline can be saved and reused for future predictions.
 
 ---
 
-## R² — R-squared
+# 👥 Group Information
 
-R² measures how much of the variation in the target variable is explained by the model.
+## Group 17
 
-A higher R² indicates better performance.
+**University:** University West
 
-An R² value of 1.0 represents a perfect fit, while values closer to 0 indicate that the model explains less of the variation.
+### Group Members
 
----
-
-# 🏆 Final Test Results
-
-The final trained model was evaluated on the unseen test dataset.
-
-| Metric | Final Result |
-|---|---:|
-| **RMSE** | **2981.3538** |
-| **MAE** | **2281.2372** |
-| **R²** | **0.8735624** |
-
-### 📌 Interpretation
-
-The final model achieved an **R² score of 0.87356**.
-
-This means that approximately **87.36% of the variation in GDP per capita is explained by the model on the test dataset**.
-
-The **MAE of 2281.24** means that the model's predictions differ from the actual GDP per capita by approximately 2281 GDP units on average.
-
-The **RMSE of 2981.35** represents the overall magnitude of prediction errors, giving greater weight to larger errors.
-
-> **Important:** Since this is a regression problem, the R² score should not be described as "87.36% accuracy." It is more appropriate to say that the model explains approximately 87.36% of the variation in GDP per capita.
+- Mahesh Anugula
+- Gnaneswar Borra
+- Tharun Singireddy
+- Kavya Seelam
 
 ---
 
-# 📊 Model Comparison
-
-The initial model comparison produced the following results:
-
-| Model | RMSE | MAE | R² |
-|---|---:|---:|---:|
-| Linear Regression | 4269.97 | 2884.59 | 0.83159 |
-| Decision Tree | 0.00 | 0.00 | 1.00000 |
-| Random Forest | 1710.73 | 991.55 | 0.97297 |
-
-These results were further investigated using cross-validation.
-
----
-
-# 🔁 Cross-Validation Results
-
-Cross-validation was performed to obtain a more reliable estimate of model performance.
-
-| Model | Mean RMSE | Standard Deviation |
-|---|---:|---:|
-| **Random Forest** | **4441.73** | **1252.61** |
-| Linear Regression | 5777.27 | 1257.34 |
-| Decision Tree | 7297.17 | 1351.66 |
-
-Based on the cross-validation results, **Random Forest achieved the lowest mean RMSE** among the three models.
-
-Therefore, Random Forest showed the strongest generalization performance during cross-validation.
-
----
-
-# ⚠️ Model Performance Observation
-
-The initial Decision Tree comparison produced an RMSE of 0 and an R² of 1.0.
-
-A perfect score can indicate that the Decision Tree has **overfitted the data**, especially if the evaluation was performed on training data.
-
-Therefore, the test-set evaluation and cross-validation results are more useful for understanding how well the models generalize to unseen data.
-
-The cross-validation results showed that Random Forest performed better than Linear Regression and Decision Tree based on mean RMSE.
-
----
-
-# 💾 Saved Machine Learning Components
-
-Two important Machine Learning components were saved for reuse.
-
-### `GDP_prediction_model.pkl`
-
-This file contains the trained Machine Learning model.
-
-It can be loaded later to make predictions without training the model again from the beginning.
-
-### `GDP_preprocessing_pipeline.pkl`
-
-This file contains the preprocessing pipeline used to transform input data before it is provided to the Machine Learning model.
-
-Using a saved preprocessing pipeline helps ensure that new data is processed consistently with the training data.
-
----
-
-# 🔮 Prediction Process
-
-For new country data, the prediction process is:
-
-```text
-New Country Data
-       ↓
-Preprocessing Pipeline
-       ↓
-Transformed Features
-       ↓
-Trained ML Model
-       ↓
-Predicted GDP per Capita
-```
-
-The saved preprocessing pipeline and trained model can therefore be reused for future predictions.
-
----
-
-# 📁 Repository Files
+# 📁 Repository Structure
 
 The GitHub repository contains the following files:
 
+```text
+GDP-Prediction-Group-17/
+│
+├── GDP_Prediction_ML.ipynb
+│
+├── GDP_prediction_model.pkl
+│
+├── GDP_preprocessing_pipeline.pkl
+│
+├── project - country GDP.xlsx
+│
+└── README.md
+```
+
+---
+
+# 📄 File Descriptions
+
 | File | Description |
 |---|---|
-| `GDP_Prediction_ML.ipynb` | Complete Jupyter Notebook containing data cleaning, EDA, preprocessing, model training, evaluation and predictions |
+| `GDP_Prediction_ML.ipynb` | Complete Jupyter Notebook containing data preprocessing, analysis, model training, evaluation, comparison, and prediction |
 | `GDP_prediction_model.pkl` | Saved trained Machine Learning model |
 | `GDP_preprocessing_pipeline.pkl` | Saved preprocessing pipeline |
-| `project - country GDP.xlsx` | Country GDP dataset |
+| `project - country GDP.xlsx` | Original project dataset |
 | `README.md` | Project documentation |
 
 ---
 
-# 🛠️ Technologies Used
+# 🌟 Final Project Summary
 
-The project was developed using:
+**Problem:** Predict GDP per capita of countries
 
-- **Python**
-- **Jupyter Notebook**
-- **NumPy**
-- **Pandas**
-- **Matplotlib**
-- **Scikit-learn**
-- **Pickle**
-- **Microsoft Excel**
+**Approach:** Supervised Machine Learning Regression
 
----
+**Models:** Linear Regression, Decision Tree Regression, Random Forest Regression
 
-# 📚 Python / Machine Learning Libraries
+**Best Cross-Validation Model:** Random Forest
 
-The main Python libraries used in the project include:
+**Final Test RMSE:** 2981.35
 
-```python
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection import cross_val_score
-from sklearn.linear_model import LinearRegression
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_squared_error
-from sklearn.metrics import mean_absolute_error
-from sklearn.metrics import r2_score
-```
+**Final Test MAE:** 2281.24
 
----
+**Final Test R²:** 0.87356
 
-# 🚀 How to Run the Project
-
-## Step 1 — Install Python
-
-Install Python on your computer.
-
-## Step 2 — Install Required Libraries
-
-Install the required libraries using:
-
-```bash
-pip install numpy pandas matplotlib scikit-learn openpyxl jupyter
-```
-
-## Step 3 — Open Jupyter Notebook
-
-Start Jupyter Notebook:
-
-```bash
-jupyter notebook
-```
-
-## Step 4 — Open the Project
-
-Open:
-
-```text
-GDP_Prediction_ML.ipynb
-```
-
-## Step 5 — Dataset
-
-Make sure the dataset file is available:
-
-```text
-project - country GDP.xlsx
-```
-
-## Step 6 — Run the Notebook
-
-Run the notebook cells in order.
-
-The notebook performs:
-
-- Data loading
-- Data cleaning
-- Exploratory analysis
-- Feature engineering
-- Train/test splitting
-- Preprocessing
-- Model training
-- Model evaluation
-- Cross-validation
-- Final prediction
-
----
-
-# 👥 Group Members
-
-## Group 17
-
-- **Mahesh Anugula**
-- **Gnaneswar Borra**
-- **Tharun Singireddy**
-- **Kavya Seelam**
-
----
-
-# 🎓 Course Information
-
-**Course:** AI Automation  
-**University:** University West  
-**Project:** Predicting GDP of World Countries  
 **Group:** 17
 
----
-
-# ✅ Conclusion
-
-This project demonstrates the application of supervised Machine Learning techniques to predict GDP per capita using country-level demographic, geographic, social, and economic information.
-
-Three regression algorithms were investigated:
-
-- Linear Regression
-- Decision Tree Regression
-- Random Forest Regression
-
-The final test evaluation achieved:
-
-**R² = 0.87356**
-
-This indicates that the final model explains approximately **87.36% of the variation in GDP per capita on the unseen test dataset**.
-
-Cross-validation showed that **Random Forest achieved the lowest mean RMSE** among the evaluated models, indicating stronger generalization performance compared with Linear Regression and Decision Tree Regression.
-
-The project also demonstrates the importance of:
-
-- Data cleaning
-- Exploratory Data Analysis
-- Feature engineering
-- Data preprocessing
-- Train/test splitting
-- Model comparison
-- Cross-validation
-- Evaluation on unseen data
-- Saving reusable Machine Learning models and preprocessing pipelines
+**University:** University West
 
 ---
 
-## 🌍 Project Summary
+# ✅ Project Status
 
-**Problem:** Predict GDP per capita of countries.
+**Project Completed**
 
-**Approach:** Supervised Machine Learning regression.
-
-**Models:** Linear Regression, Decision Tree, Random Forest.
-
-**Final Test R²:** **0.87356**
-
-**Best Cross-Validation Model:** **Random Forest**
-
-**Group:** **17**
-
-**University:** **University West**
+The Machine Learning model has been trained, evaluated, compared using multiple regression algorithms, validated using cross-validation, tested on unseen data, and saved for future reuse.
